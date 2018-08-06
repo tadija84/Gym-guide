@@ -1,0 +1,152 @@
+html {
+    box-sizing: border-box;
+}
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+body{
+    background-color: darkgreen;
+    background-image: url("pozadina-1.jpg");
+    background-size: cover;                     
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    min-height: 800px;
+    background-position: center top;
+      
+}
+#logo{
+    position: relative;
+    float: left;
+    left: 30px;
+    top: 30px;
+    height: 45px;
+    position: fixed;
+}
+#powered{
+    position: relative;
+    float: left;
+    left: 30px;
+    bottom: 10px;
+    position: fixed;
+    font-size: 10pt;
+}
+#register,
+#zaboravljenaSifra,
+#ulogovan,
+#promenaSifre,
+#mojProfil,
+#izmeniProfil,
+#program,
+#programZaSedmicu,
+#logoutPage {
+    display: none;
+}
+#ulogovan{
+    min-height: 500px;
+} 
+#mojProfil{
+    width: 100%;
+    z-index: +1;
+}
+#program, #prikazProgramaZaSedmicu, #izmeniProfil{
+    min-height: 800px; 
+    z-index: +1;
+}
+
+table, thead, td{
+    border: 0;
+ font-family: Arial;
+ font-style: italic;
+ font-size: 11pt;
+ background: rgba(21, 21, 21,1);
+ outline-width: 3px;
+ outline-color: ;
+}
+thead,td {
+ outline: solid #b5ea00 1px;
+}
+#tabelaNaDan{position: relative;
+    left: 25%;
+    top: 200px;
+    width: 50%;
+}
+#tabelaZaSedmicu{
+    position: relative;
+    top: 200px;
+    width: 50%;
+   left: 10%
+}
+nav{clear: both;
+    position: relative;
+    float: right;
+    right: 0;
+    top: 30px;
+   /*  width: 50%;background-color: rgb(85,85,85);
+   height: 20px;*/
+    font-size: 11pt;
+    position: fixed;
+    padding-left: 180px;
+    
+    display: inline;
+}
+.tablink {
+  
+   background-color: rgba(85,85,85, 0);
+    color:white;
+    float: left;
+    border: solid black 1px;
+    outline: none;
+    cursor: pointer;
+    padding: 1px 10px;
+    font-size: 15px;
+    margin-right: 1px;
+   font-family: Arial;
+   font-style: italic;
+   display: inline;
+    height: 40px;
+    white-space: nowrap;
+}
+
+.tablink:hover {
+    /*background-color: #777;*/
+    border-bottom: solid rgb(181,211,52) 3px;
+    
+   
+}
+body{
+    color: white;
+}
+#login > img{
+    position: center top;
+    width: 100%;
+}
+#izmeniProfil img{
+   position: relative;
+   width: 100%;
+   z-index: 1;
+
+}
+#sadrzajPromenePodataka{
+    position: relative;
+    z-index: 2;
+    bottom: 700px;
+    
+}
+/*#izmeniProfil{
+   background-image: url( 04-izmena-profila.jpg);
+background-size: cover;
+background-pozition: center top;
+background-repeat: no-repeat;
+min-height: 800px;
+}*/
+#logoutPage{
+    display: none;
+}
+footer{
+    background: #777;
+}
+#programZaSedmicu{
+    width: 70%;
+    margin-left:25%;
+
+}

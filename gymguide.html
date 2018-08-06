@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>GYM GUIDE</title>
+    <link rel="stylesheet" href="stil.css">
+</head>
+
+<body>
+    <!--<header>
+        <img src="logo.jpg" alt="logo">
+
+    </header>-->
+
+    <form action="?" method="post" id="login">
+       
+        <h1>FLEX MILLER GYM GUIDE</h1>
+        <h3>Dobrodosli</h3>
+        <hr>
+        <h2>Login</h2>
+        <p>
+            <label for="user">user </label>
+            <input type="text" name="user" id="user">
+        </p>
+        <p>
+            <label for="pass">pass</label>
+            <input type="text" name="pass" id="pass">
+        </p>
+        <input type="submit" value="Login">
+        <hr>
+        <br> Nemaš nalog?
+        <a href="#" id="registrujSe">Registruj se</a>
+        <br>
+        <a href="#" id="linkZaboravljenaSifra">Zaboravio sam šifru</a>
+    </form>
+
+    <form action="?" method="post" id='register'>
+        <h2>Register</h2>
+        <p>
+            <label for="user1">user </label>
+            <input type="text" name="user1" id="user1">
+        </p>
+        <p>
+            <label for="pass1">pass </label>
+            <input type="text" name="pass1" id="pass1">
+        </p>
+        <p>
+            <label for="confirmpass">confirm pass</label>
+            <input type="text" name="confirmPass1" id="confirmpass">
+        </p>
+        <p>
+            <label for="question">security question </label>
+            <select name="question" id="question">
+                <option value="">Your mother middle name</option>
+                <option value="">Your first pet name</option>
+                <option value="">Name of your first love</option>
+                <option value="">Name of your primary school teacher</option>
+            </select>
+        </p>
+        <p>
+            <label for="answer">answer </label>
+            <input type="text" name="answer" id="answer">
+        </p>
+        <input type="submit" value="Register">
+        <br> Imaš nalog?
+        <a href="" id="loginLink">Uloguj se</a>
+
+    </form>
+
+    <form action="?" method="post" id="zaboravljenaSifra">
+
+        <h2>Zaboravljena šifra</h2>
+        <p>
+            <label for="user">user</label>
+            <input type="text" id="user2">
+            <input type="submit" value="Pošalji">
+
+        </p>
+    </form>
+    <!--<div id="ulogovan">
+        Ulogovani ste kao:
+        
+        <a href="#" id="linkPromenaSifre">Promeni šifru</a>
+        <a href="#" id="logoutLink">Izloguj se</a>
+        <a href="#" id="idiNaMojProfil">Moj profil</a>
+    </div>-->
+
+
+
+    <div id="mojProfil">
+        <img src="logo.png" alt="logo" id="logo">
+        <nav>
+            <button class="tablink" id="pocetna">Home</button>
+            <button class="tablink" id="urediProfil">Profile</button>
+            <button class="tablink" id="pokaziProgramZaDanas">Today's &nbsp; workout</button>
+            <button class="tablink" id="pokaziProgramZaSedmicu">Week &nbsp; workout</button>
+            <button class="tablink" id="logoutLink">Logout</button>
+            <!--
+            <button class="tablink" id="linkPromenaSifre">Promeni šifru</button>
+            <button class="tablink">Pokazi statistiku</button>
+            <button class="tablink">Pokazi napredak</button>-->
+        </nav>
+        <!--<div id="home">
+        Ulogovani ste kao:
+        <span id="imeUlogovanogKorisnika"></span>
+        <br> Pol:
+        <span id="polUlogovanogKorisnika"></span>
+        <br> Visina:
+        <span id="visinaUlogovanogKorisnika"></span>
+        <br> Tezina:
+        <span id="tezinaUlogovanogKorisnika"></span>
+        <br>Idealna tezina:
+        <span id="idealnaTezinaUlogovanogKorisnika"></span>
+        <br>Razlika od idealne tezine:
+        <span id="razlikaTezinaUlogovanogKorisnika"></span>
+        <br> Godine:
+        <span id="godineUlogovanogKorisnika"></span>
+        <br> Procenat masti u telu:
+        <span id="procenatMastiUlogovanogKorisnika"></span>
+        <br>
+        Modul treninga:
+        <span id="modulUlogovanogKorisnika"></span>
+        <br>
+        Broj treninga nedeljno:
+        <span id="treningaNedeljno"></span>
+        <br>
+
+        <p id="ispisOsnovnihPodataka"></p>
+    </div>
+       -->
+
+
+
+        <div id="program">
+
+            <div id="tabelaNaDan"></div>
+            <form action="?">
+                <!--<input type="button" value="Mogu vise" id="moguVise" onclick="povecavanje()">
+                <input type="button" value="Mogu manje" id="moguManje" onclick="smanjivanje()">-->
+                <input type="button" value="Imam upalu misica" id="imamUpalu" onclick="imamUpalu()">
+            </form>
+            <p>Click the button to print the current page.</p>
+            <button onclick="stampa()">Print this page</button>
+            <br>
+        </div>
+
+        <form action="?" id="izmeniProfil">
+
+            <div id="sadrzajPromenePodataka">
+                <h4>Molimo vas unesite vase podatke</h4>
+                <p>Sto tacnije podatke unesete to ce vas preporuceni program treniranja biti precizniji.</p>
+                <input type="text" name="imeKorisnika">unesite ime
+                <input type="text" name="godine" id="godine">unesite godine
+                <br>
+                <input type="text" name="visina" id="visina">unesite visinu
+                <input type="text" name="tezina" id="tezina">unesite tezinu
+                <br>
+                <input type="text" name="procenatMasti" id="procenatMasti">unesite procenat masti
+                <br>
+                <input type="radio" name="gender" value="male">muski
+                <input type="radio" name="gender" value="female">zenski
+                <hr>
+                <h3>izaberite modul treninga</h3>
+                <input type="radio" name="modul" value="masa">Izgradnja misicne mase
+                <input type="radio" name="modul" value="definicija">Definisanje misica
+                <input type="radio" name="modul" value="snaga">Snaga
+                <input type="radio" name="modul" value="kardio">Kardio
+                <br>
+                <h3> koliko treninga nedeljno</h3>
+                <br>
+                <input type="radio" name="brojTreninga" value="1">1
+                <input type="radio" name="brojTreninga" value="2">2
+                <input type="radio" name="brojTreninga" value="3">3
+                <input type="radio" name="brojTreninga" value="4">4
+                <input type="radio" name="brojTreninga" value="5">5
+                <input type="radio" name="brojTreninga" value="6">6
+                <input type="radio" name="brojTreninga" value="7">7
+                <br>
+                <button type="submit">Posalji</button>
+                <button type="reset">Obrisi</button>
+                <p>Podaci koje unesete bice korisceni samo u svrhu kreiranja programa treninga</p>
+                <div id="promenaSifre">
+                    <form action="" method="post">
+                        Stara:
+                        <input type="text" value="" id="staraSifra">
+                        <br> Nova:
+                        <input type="text" value="" id="novaSifra">
+                        <br> Potvrda:
+                        <input type="text" value="" id="potvrdaSifre">
+                        <br>
+                        <input type="submit" value="Promeni">
+                    </form>
+                </div>
+            </div>
+        </form>
+        <div id="programZaSedmicu">
+            <div id="tabelaZaSedmicu"></div>
+
+            <!--<button onclick="stampa()">Print this page</button>
+            <br>-->
+        </div>
+        <div id="logoutPage">
+            <img src="05-logout.jpg" alt="logoutPage">
+        </div>
+        <div id="logout">
+            <div id="daLiSiSiguran"></div>
+        </div>
+        <div id="powered">Powered by Tadija</div>
+    </div>
+
+   
+    <script src="gymguide.js"></script>
+
+</body>
+
+</html>
