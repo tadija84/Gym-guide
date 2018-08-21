@@ -5,7 +5,6 @@ html {
     box-sizing: inherit;
 }
 body{
-    background-color: darkgreen;
     background-image: url("pozadina-1.jpg");
     background-size: cover;                     
     background-repeat: no-repeat;
@@ -60,9 +59,9 @@ table, thead, td{
  font-size: 11pt;
  background: rgba(21, 21, 21,1);
  outline-width: 3px;
- outline-color: ;
+ 
 }
-thead,td {
+thead,td, th {
  outline: solid #b5ea00 1px;
 }
 #tabelaNaDan{position: relative;
@@ -123,7 +122,7 @@ body{
 #izmeniProfil img{
    position: relative;
    width: 100%;
-   z-index: 1;
+   
 
 }
 #sadrzajPromenePodataka{
@@ -139,9 +138,6 @@ background-pozition: center top;
 background-repeat: no-repeat;
 min-height: 800px;
 }*/
-#logoutPage{
-    display: none;
-}
 footer{
     background: #777;
 }
@@ -149,4 +145,24 @@ footer{
     width: 70%;
     margin-left:25%;
 
+}
+#home #ispisOsnovnihPodataka{
+    position: relative;
+    float: left;
+    top: 100px;
+   left: 25%;
+    width: 50%;
+}
+#daLiSiSiguran{
+    position: relative;
+    top:150px;
+    left:45%;
+    width: 200px;
+    height: 100px;
+    border: solid red 2px;
+}
+#zaDa, #zaNe{
+width: 47%;
+margin:1%;
+float: left;
 }

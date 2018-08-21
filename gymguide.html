@@ -7,16 +7,18 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>GYM GUIDE</title>
     <link rel="stylesheet" href="stil.css">
+    
 </head>
 
 <body>
+       
     <!--<header>
         <img src="logo.jpg" alt="logo">
 
     </header>-->
 
     <form action="?" method="post" id="login">
-       
+
         <h1>FLEX MILLER GYM GUIDE</h1>
         <h3>Dobrodosli</h3>
         <hr>
@@ -95,47 +97,93 @@
         <nav>
             <button class="tablink" id="pocetna">Home</button>
             <button class="tablink" id="urediProfil">Profile</button>
-            <button class="tablink" id="pokaziProgramZaDanas">Today's &nbsp; workout</button>
-            <button class="tablink" id="pokaziProgramZaSedmicu">Week &nbsp; workout</button>
+            <button class="tablink" id="pokaziProgramZaDanas">Today's workout</button>
+            <button class="tablink" id="pokaziProgramZaSedmicu">Week workout</button>
+            <button class="tablink" id="prikazStatistike">Data</button>
             <button class="tablink" id="logoutLink">Logout</button>
             <!--
             <button class="tablink" id="linkPromenaSifre">Promeni šifru</button>
             <button class="tablink">Pokazi statistiku</button>
             <button class="tablink">Pokazi napredak</button>-->
         </nav>
-        <!--<div id="home">
-        Ulogovani ste kao:
-        <span id="imeUlogovanogKorisnika"></span>
-        <br> Pol:
-        <span id="polUlogovanogKorisnika"></span>
-        <br> Visina:
-        <span id="visinaUlogovanogKorisnika"></span>
-        <br> Tezina:
-        <span id="tezinaUlogovanogKorisnika"></span>
-        <br>Idealna tezina:
-        <span id="idealnaTezinaUlogovanogKorisnika"></span>
-        <br>Razlika od idealne tezine:
-        <span id="razlikaTezinaUlogovanogKorisnika"></span>
-        <br> Godine:
-        <span id="godineUlogovanogKorisnika"></span>
-        <br> Procenat masti u telu:
-        <span id="procenatMastiUlogovanogKorisnika"></span>
-        <br>
-        Modul treninga:
-        <span id="modulUlogovanogKorisnika"></span>
-        <br>
-        Broj treninga nedeljno:
-        <span id="treningaNedeljno"></span>
-        <br>
-
-        <p id="ispisOsnovnihPodataka"></p>
-    </div>
-       -->
+        <div id="home">
+            <div id="ispisOsnovnihPodataka">
+            Ulogovani ste kao:
+            <span id="imeUlogovanogKorisnika"></span>
+            <br> Pol:
+            <span id="polUlogovanogKorisnika"></span>
+            <br> Visina:
+            <span id="visinaUlogovanogKorisnika"></span>
+            <br> Tezina:
+            <span id="tezinaUlogovanogKorisnika"></span>
+            <br>Idealna tezina:
+            <span id="idealnaTezinaUlogovanogKorisnika"></span>
+            <br>Razlika od idealne tezine:
+            <span id="razlikaTezinaUlogovanogKorisnika"></span>
+            <br> Godine:
+            <span id="godineUlogovanogKorisnika"></span>
+            <br> Procenat masti u telu:
+            <span id="procenatMastiUlogovanogKorisnika"></span>
+            <br> Modul treninga:
+            <span id="modulUlogovanogKorisnika"></span>
+            <br> Broj treninga nedeljno:
+            <span id="treningaNedeljno"></span>
+            <br></div>
+        </div>
 
 
+
+
+
+        <form action="?" id="izmeniProfil">
+
+
+            <h4>Molimo vas unesite vase podatke</h4>
+            <p>Sto tacnije podatke unesete to ce vas preporuceni program treniranja biti precizniji.</p>
+            <input type="text" name="imeKorisnika">unesite ime
+            <input type="text" name="godine" id="godine">unesite godine
+            <br>
+            <input type="text" name="visina" id="visina">unesite visinu
+            <input type="text" name="tezina" id="tezina">unesite tezinu
+            <br>
+            <input type="text" name="procenatMasti" id="procenatMasti">unesite procenat masti
+            <br>
+            <input type="radio" name="gender" value="male">muski
+            <input type="radio" name="gender" value="female">zenski
+            <hr>
+            <h3>izaberite modul treninga</h3>
+            <input type="radio" name="modul" value="masa">Izgradnja misicne mase
+            <input type="radio" name="modul" value="definicija">Definisanje misica
+            <input type="radio" name="modul" value="snaga">Snaga
+            <input type="radio" name="modul" value="kardio">Kardio
+            <br>
+            <h3> koliko treninga nedeljno</h3>
+            <br>
+            <input type="radio" name="brojTreninga" value="1">1
+            <input type="radio" name="brojTreninga" value="2">2
+            <input type="radio" name="brojTreninga" value="3">3
+            <input type="radio" name="brojTreninga" value="4">4
+            <input type="radio" name="brojTreninga" value="5">5
+            <input type="radio" name="brojTreninga" value="6">6
+            <input type="radio" name="brojTreninga" value="7">7
+            <br>
+            <button type="submit">Posalji</button>
+            <button type="reset">Obrisi</button>
+            <p>Podaci koje unesete bice korisceni samo u svrhu kreiranja programa treninga</p>
+            <div id="promenaSifre">
+                    Stara:
+                    <input type="text" value="" id="staraSifra">
+                    <br> Nova:
+                    <input type="text" value="" id="novaSifra">
+                    <br> Potvrda:
+                    <input type="text" value="" id="potvrdaSifre">
+                    <br>
+                    <input type="submit" value="Promeni">
+            </div>
+
+        </form>
 
         <div id="program">
-
             <div id="tabelaNaDan"></div>
             <form action="?">
                 <!--<input type="button" value="Mogu vise" id="moguVise" onclick="povecavanje()">
@@ -147,71 +195,29 @@
             <br>
         </div>
 
-        <form action="?" id="izmeniProfil">
-
-            <div id="sadrzajPromenePodataka">
-                <h4>Molimo vas unesite vase podatke</h4>
-                <p>Sto tacnije podatke unesete to ce vas preporuceni program treniranja biti precizniji.</p>
-                <input type="text" name="imeKorisnika">unesite ime
-                <input type="text" name="godine" id="godine">unesite godine
-                <br>
-                <input type="text" name="visina" id="visina">unesite visinu
-                <input type="text" name="tezina" id="tezina">unesite tezinu
-                <br>
-                <input type="text" name="procenatMasti" id="procenatMasti">unesite procenat masti
-                <br>
-                <input type="radio" name="gender" value="male">muski
-                <input type="radio" name="gender" value="female">zenski
-                <hr>
-                <h3>izaberite modul treninga</h3>
-                <input type="radio" name="modul" value="masa">Izgradnja misicne mase
-                <input type="radio" name="modul" value="definicija">Definisanje misica
-                <input type="radio" name="modul" value="snaga">Snaga
-                <input type="radio" name="modul" value="kardio">Kardio
-                <br>
-                <h3> koliko treninga nedeljno</h3>
-                <br>
-                <input type="radio" name="brojTreninga" value="1">1
-                <input type="radio" name="brojTreninga" value="2">2
-                <input type="radio" name="brojTreninga" value="3">3
-                <input type="radio" name="brojTreninga" value="4">4
-                <input type="radio" name="brojTreninga" value="5">5
-                <input type="radio" name="brojTreninga" value="6">6
-                <input type="radio" name="brojTreninga" value="7">7
-                <br>
-                <button type="submit">Posalji</button>
-                <button type="reset">Obrisi</button>
-                <p>Podaci koje unesete bice korisceni samo u svrhu kreiranja programa treninga</p>
-                <div id="promenaSifre">
-                    <form action="" method="post">
-                        Stara:
-                        <input type="text" value="" id="staraSifra">
-                        <br> Nova:
-                        <input type="text" value="" id="novaSifra">
-                        <br> Potvrda:
-                        <input type="text" value="" id="potvrdaSifre">
-                        <br>
-                        <input type="submit" value="Promeni">
-                    </form>
-                </div>
-            </div>
-        </form>
         <div id="programZaSedmicu">
             <div id="tabelaZaSedmicu"></div>
 
             <!--<button onclick="stampa()">Print this page</button>
             <br>-->
         </div>
-        <div id="logoutPage">
-            <img src="05-logout.jpg" alt="logoutPage">
+        <div id="statistika">
+            <div id="podaciOPrethodnimTreninzima"></div>
         </div>
+        <div id="logoutPage">
+         <div id="daLiSiSiguran">
+             <button id="zaDa">DA</button>
+             <button id="zaNe">NE</button>
+         </div>
+        </div>
+
         <div id="logout">
             <div id="daLiSiSiguran"></div>
         </div>
         <div id="powered">Powered by Tadija</div>
     </div>
 
-   
+    
     <script src="gymguide.js"></script>
 
 </body>

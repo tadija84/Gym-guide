@@ -8,11 +8,14 @@ document.getElementById("urediProfil").addEventListener("click", urediMojProfil)
 document.getElementById("zaboravljenaSifra").addEventListener("submit", zaboravljenaSifra);
 document.getElementById("register").addEventListener("submit", dodajKorisnika);
 document.getElementById("login").addEventListener("submit", proveriKorisnika);
-document.getElementById("logoutLink").addEventListener("click", izlogujGa);
+document.getElementById("logoutLink").addEventListener("click", stranicaZaLogout);
 document.getElementById("pocetna").addEventListener("click", prikaziMojProfil);
+document.getElementById("zaDa").addEventListener("click", izlogujGa);
+document.getElementById("zaNe").addEventListener("click", prikaziMojProfil);
 //document.getElementById("linkPromenaSifre").addEventListener("click", idiNaPromenuSifre);// style.display = id == 'linkPromenaSifre' ? 'block' : 'none';
 document.getElementById("pokaziProgramZaSedmicu").addEventListener("click", prikazProgramaZaSedmicu);
 document.getElementById("izmeniProfil").addEventListener("submit", promenaPodataka);
+document.getElementById("prikazStatistike").addEventListener("click", prikaziStatistiku);
 function klikNaLink(event) {
     event.preventDefault();
     var id = event.target.id;
@@ -21,21 +24,31 @@ function klikNaLink(event) {
     document.getElementById("zaboravljenaSifra").style.display = id == 'linkZaboravljenaSifra' ? 'block' : 'none';
 
 }
-function prikaziMojProfil(event) {
+function prikaziMojProfil() {
     //event.preventDefault();
+
+    document.body.style.backgroundImage = "url('pozadina-1.jpg')";
+
+    document.body.style.backgroundColor = "#f3f3f3";
+    document.body.style.backgroundSize = "cover";
+    document.body.style.backgroundAttachment = "fixed";
     document.getElementById("mojProfil").style.display = 'block';
+    document.getElementById("home").style.display = 'block';
     document.getElementById("izmeniProfil").style.display = "none";
     document.getElementById("login").style.display = 'none';
     document.getElementById("programZaSedmicu").style.display = 'none';
     document.getElementById("program").style.display = 'none';
     document.getElementById("promenaSifre").style.display = "none";
     document.getElementById("register").style.display = "none";
+    document.getElementById("statistika").style.display = "none";
+    document.getElementById("logout").style.display = "none";
+    document.getElementById("daLiSiSiguran").style.display = "none";
     var ime = localStorage.getItem('ulogovaniKorisnik');
     var korisnik = proveraImena(ime);
     var tezineKorisnika = preporuceniModulTreninga();
     var vezbeZaIspis = podelaMisicaNaGrupe();
     console.log(korisnik);
-    console.log(vezbeZaIspis);
+
     document.getElementById("imeUlogovanogKorisnika").innerHTML = ime;
     document.getElementById("polUlogovanogKorisnika").innerHTML = korisnik.pol;
     document.getElementById("visinaUlogovanogKorisnika").innerHTML = korisnik.visina;
@@ -64,14 +77,12 @@ function zaboravljenaSifra(event) {
     var user = document.getElementById("user2").value;
     var userIzBaze = proveraImena(user);
     if (userIzBaze !== false) {
-
         var odgovor = prompt(userIzBaze.secquestion);
         if (odgovor === userIzBaze.answer) {
             alert("pass je:" + userIzBaze.pass);
         } else {
             alert("Pogrešan odgovor");
         }
-
     } else {
         alert('User ne postoji');
     }
@@ -91,15 +102,15 @@ function dodajKorisnika(event) {
     var answer = document.getElementById("answer").value;
     var selektovan = document.getElementById("question");
     var vreme = vremeNaPocetkuNedelje();
-
-
+    var odradjeniTreninzi = [];
     var podaciOKorisniku = {
         user: user,
         pass: pass,
         confirmpass: confirmpass,
         answer: answer,
         secquestion: selektovan.options[selektovan.selectedIndex].innerHTML,
-        vreme: vreme
+        vreme: vreme,
+        odradjeniTreninzi: odradjeniTreninzi
     }
     var korisniciIzStoragea = sviKorisnici();
     korisniciIzStoragea.push(podaciOKorisniku);
@@ -117,12 +128,20 @@ function sviKorisnici() {
 }
 
 function urediMojProfil(event) {
+
     document.getElementById("izmeniProfil").style.display = "block";
+    //document.getElementById("sadrzajPromenePodataka").style.display = "block";
     document.getElementById("program").style.display = "none";
-    document.getElementById("mojProfil").style.background = 'url("pozadina-2.jpg")';
-    document.getElementById("mojProfil").style.backgroundSize = "cover";
-    document.getElementById("mojProfil").style.backgroundAttachment = "fixed";
-    //document.getElementById("promenaSifre").style.display = "none";
+    document.getElementById("statistika").style.display = "none";
+    document.getElementById("ispisOsnovnihPodataka").style.display = "none";
+    document.getElementById("home").style.display = "none";
+    document.getElementById("logout").style.display = "none";
+    document.body.style.backgroundImage = "url('pozadina-2.jpg')";
+
+    document.body.style.backgroundColor = "#f3f3f3";
+    document.body.style.backgroundSize = "cover";
+    document.body.style.backgroundAttachment = "fixed";
+    //document.getElementById("promenaSifre").style.display = "none";*/
 }
 function proveriKorisnika(event) {
     //  event.preventDefault();
@@ -141,22 +160,22 @@ function proveriKorisnika(event) {
 }
 
 function ulogujGa(ime) {
-    // document.getElementById("ulogovan").style.display = 'block';
-    //document.getElementById("ulogovan").style.background = 'lightblue';
-    // document.getElementById("imeUlogovanogKorisnika").innerHTML = ime;
     localStorage.setItem('ulogovaniKorisnik', ime);
     prikaziMojProfil();
 }
 function stranicaZaLogout() {
     document.getElementById("logoutPage").style.display = "block";
-    document.getElementById("logoutPage").style.background = 'url("pozadina-3.jpg")';
+    document.getElementById("daLiSiSiguran").style.display = "block";
+    document.body.style.background = 'url("pozadina-3.jpg")';
     document.getElementById("logoutPage").style.backgroundSize = "cover";
     document.getElementById("logoutPage").style.backgroundAttachment = "fixed";
+    document.getElementById("home").style.display = "none";
     document.getElementById("izmeniProfil").style.display = "none";
+    document.getElementById("statistika").style.display = "none";
     document.getElementById("programZaSedmicu").style.display = "none";
     document.getElementById("promenaSifre").style.display = "none";
     document.getElementById("program").style.display = "none";
-    izlogujGa();
+    // izlogujGa();
 }
 function izlogujGa() {
     localStorage.removeItem('ulogovaniKorisnik');
@@ -176,7 +195,6 @@ function proveraImena(user) {
 
 function promeniSifru(event) {
     event.preventDefault();
-
     var stara = document.getElementById("staraSifra").value;
     var nova = document.getElementById("novaSifra").value;
     var potvrda = document.getElementById("potvrdaSifre").value;
@@ -209,7 +227,6 @@ function promeniSifru(event) {
 
 
 
-function prikazTabelePrethodnihTreninga() { }
 
 function prikazVezbi() { } // moguce ubacivanje drugih vezbi za iste grupe misica
 function preporucenaDijeta() { }// opciono
@@ -220,115 +237,316 @@ function upisUTabelu() { }//korisnik upisuje uu tabelu sta je radio
 function prekidTreninga() { }//ako je mali prekid nastaviti treninge sa neznatno manjim intezitetom
 //u suprotnom, krenuti od nule
 function preracunavanjeOptimalnogTreninga() { }//U slucaju da imamo posla sa sirovinom koja dize 150 iz bendza
-function moguManje() { }
-function moguVise() { }
 
 
 
 function prikazPrograma(event) {
     document.getElementById("program").style.display = "block";
-    document.getElementById("mojProfil").style.background = 'url("pozaadina-4.jpg")';
-    document.getElementById("mojProfil").style.backgroundSize = "cover";
-    document.getElementById("mojProfil").style.backgroundAttachment = "fixed";
+    document.body.style.background = 'url("pozaadina-4.jpg")';
+    document.body.style.backgroundColor = "#f3f3f3";
+    document.body.style.backgroundSize = "cover";
+    document.body.style.backgroundAttachment = "fixed";
     document.getElementById("izmeniProfil").style.display = "none";
     document.getElementById("programZaSedmicu").style.display = "none";
     document.getElementById("promenaSifre").style.display = "none";
+    document.getElementById("statistika").style.display = "none";
+    document.getElementById("logout").style.display = "none";
+    var datum = new Date();
+
+    var danUSedmici = datum.getDay();
+    if (danUSedmici == 0) {
+        danUSedmici = 7
+    }
+    var udaljenostDoNedelje = 7 - danUSedmici;
+    var daLiDanasImamTrening = daLiDanasVezbam(datum);
+    console.log("da li vebam", daLiDanasImamTrening, datum);
+    var tabela = "<table>";
+    if (daLiDanasImamTrening == "no") {
+        return document.getElementById("tabelaNaDan").innerHTML = "Danas je dan za odmor.";
+    }
+    tabela += danasnjaTabela(udaljenostDoNedelje);
+    tabela += "</table>";
+    document.getElementById("tabelaNaDan").innerHTML = tabela;
+}
+
+function racunanjePrograma(datum, udaljenostDoNedelje, n) {
+    var ime = localStorage.getItem('ulogovaniKorisnik');
+    var korisnik = proveraImena(ime);
+    var korisnici = sviKorisnici();
     var vezbe = podelaMisicaNaGrupe();
     var trening = racunanjeOptimalnogTreninga();
     var brojSerijaVezbe = trening.serije;
     var brojPonavljanjaUSeriji = trening.ponavljanja;
     var opterecenje = racunanjeOpterecenja();
-    var danUProgramu = programZaDan();
-    var duzinaNiza = vezbe.length;
-    var daLiDanasImamTrening = daLiDanasVezbam();
+    var danUProgramu = programZaDan(datum);
+    //var daLiDanasImamTrening = daLiDanasVezbam(datum);
     var povecavanjePonavljanja = trening.povecavanjePonavljanja;
-    var povecavanjeSerija= trening.povecavanjeSerija;
-    var daLiDanasImamTrening = daLiDanasVezbam();
-    var daLiPovecati=daLiJeVremeZaPovecavanje();
-    if (daLiPovecati=true){
-       if (brojSerijaVezbe<6){ 
-           brojSerijaVezbe+=povecavanjeSerija;}
-        if (brojPonavljanja<15){
-            brojPonavljanja+=povecavanjePonavljanja;}
+    var povecavanjeSerija = trening.povecavanjeSerija;
+    var daLiPovecati = daLiJeVremeZaPovecavanje();
+    var odradjeniTreninzi = korisnik.odradjeniTreninzi;
+    var zadnjiTrening;
+    var brojTreningaKorisnika;
+    zadnjiTrening = odradjeniTreninzi[odradjeniTreninzi.length - 1];
+    if (zadnjiTrening !== undefined) {
+        brojTreningaKorisnika = zadnjiTrening[1];
+    } else {
+        brojTreningaKorisnika = 0;
+        zadnjiTrening = [];
     }
     var tabela = "";
-    if (daLiDanasImamTrening == "yes") {
-        tabela = "<table>";
-        tabela += "<thead><tr><th>Vezba</th><th>Broj serija</th><th>Ponavljanje</th><th>Tezina</th></tr></thead>";
-        q = vezbe[danUProgramu].length;
-        for (var z = 0; z < q; z++) {
-            var x = Math.floor(Math.random() * vezbe[danUProgramu][z].length);
-            var y = Math.floor(Math.random() * vezbe[danUProgramu][z].length);
-            tabela += "<tr><td>" + vezbe[danUProgramu][z][x] + "</td><td>" + brojSerijaVezbe + "</td><td>" + brojPonavljanjaUSeriji + "</td><td>" + opterecenje + "</td><td><input type='button' value='Mogu vise' id='moguVise1' onclick='povecavanje()'></td><td><input type='button' value='Mogu manje' id='moguManje1' onclick='smanjivanje()'></td></tr>";
-            tabela += "<tr><td>" + vezbe[danUProgramu][z][y] + "</td><td>" + brojSerijaVezbe + "</td><td>" + brojPonavljanjaUSeriji + "</td><td>" + opterecenje + "</td>+<td><input type='button' value='Mogu vise' id='moguVise1' onclick='povecavanje()'></td><td><input type='button' value='Mogu manje' id='moguManje1' onclick='smanjivanje()'></td></tr>";
+    if (daLiPovecati == true) {
+        if (brojSerijaVezbe < 6) {
+            brojSerijaVezbe += povecavanjeSerija;
         }
-        tabela += "</table>";
+        if (brojPonavljanjaUSeriji < 15) {
+            brojPonavljanjaUSeriji += povecavanjePonavljanja;
+        }
+    }
+    if (danUProgramu == "x") {
+        tabela = "<td>Danas je dan za odmor.</td>";
     }
     else {
-        tabela = "Danas je dan za odmor.";
+        //(daLiDanasImamTrening == "yes") { }
+        var podaciZaStatistiku = [];
+        podaciZaStatistiku.push(n);
+        brojTreningaKorisnika += 1;
+        podaciZaStatistiku.push(brojTreningaKorisnika);
+        var w = 1;
+        var q = vezbe[danUProgramu].length;
+        for (var z = 0; z < q; z++) {
+
+            var x = izborNasumicnogBroja(vezbe[danUProgramu][z].length);
+            var y = izborNasumicnogBroja(vezbe[danUProgramu][z].length);
+            while (y === x) {
+                y = izborNasumicnogBroja(vezbe[danUProgramu][z].length);
+            }
+            var tezina1 = racunanjeOpterecenja(vezbe[danUProgramu][z][x]);
+            var tezina2 = racunanjeOpterecenja(vezbe[danUProgramu][z][y]);
+            podaciZaStatistiku.push(vezbe[danUProgramu][z][x]);
+            podaciZaStatistiku.push(brojSerijaVezbe);
+            podaciZaStatistiku.push(brojPonavljanjaUSeriji);
+            podaciZaStatistiku.push(tezina1);
+            podaciZaStatistiku.push(vezbe[danUProgramu][z][y]);
+            podaciZaStatistiku.push(brojSerijaVezbe);
+            podaciZaStatistiku.push(brojPonavljanjaUSeriji);
+            podaciZaStatistiku.push(tezina2);
+        }
+        odradjeniTreninzi.push(podaciZaStatistiku);
     }
-    document.getElementById("tabelaNaDan").innerHTML = tabela;
+
+    for (var index = 0; index < korisnici.length; index++) {
+        var user = korisnici[index];
+        if (korisnik.user == user.user) {
+            korisnici[index].odradjeniTreninzi = odradjeniTreninzi;
+        }
+    }
+    localStorage.setItem('korisnik', JSON.stringify(korisnici));
     terminusPovecavanja();
-    console.log(trening);
 }
-
-
-
-
 function stampa() {
     window.print();
 }
 
 function prikazProgramaZaSedmicu(event) {
     document.getElementById("programZaSedmicu").style.display = "block";
-    document.getElementById("mojProfil").style.background = 'url("pozadina.jpg")';
-    document.getElementById("mojProfil").style.backgroundSize = "cover";
-    document.getElementById("mojProfil").style.backgroundAttachment = "fixed";
+    document.body.style.backgroundColor = "#f3f3f3";
+    document.body.style.background = 'url("pozadina.jpg")';
+    document.body.style.backgroundSize = "cover";
+    document.body.style.backgroundAttachment = "fixed";
     document.getElementById("program").style.display = "none";
     document.getElementById("izmeniProfil").style.display = "none";
     document.getElementById("promenaSifre").style.display = "none";
+    document.getElementById("statistika").style.display = "none";
+    document.getElementById("logout").style.display = "none";
+    racunanjeProgramaZaSedmicu();
     var daniUNedelji = ["ponedeljak", "utorak", "sreda", "cetvrtak", "petak", "subota", "nedelja"];
-    var trening = racunanjeOptimalnogTreninga();
-    var brojSerijaVezbe = trening.serije;
-    var brojPonavljanjaUSeriji = trening.ponavljanja;
-   
-    var opterecenje = racunanjeOpterecenja();
-
-    var tabela = "";
-    tabela = "<table>";
-    tabela += "<thead><tr><th>Dan i program</th></thead>";
-    for (var j = 0; j <= 6; j++) {
-        tabela += "<tr><th>" + daniUNedelji[j] + "</th></tr>";
-        tabela += "<thead><tr><th>Vezba</th><th>Broj serija</th><th>Ponavljanje</th><th>Tezina</th></tr></thead>";
-        var danUProgramu = izborProgramaZaNedelju(j);
-        console.log(danUProgramu);
-        var vezbe = podelaMisicaNaGrupe();
-        console.log(vezbe.length, "dugo");
-        if (danUProgramu == "odmor") {
-            tabela += "<tr><td>danas je dan za odmor</td></tr>";
+    var ime = koJeUlogovan();
+    var korisnik = proveraImena(ime);
+    var datum = new Date();
+    var danUSedmici = datum.getDay();
+    if (danUSedmici == 0) {
+        danUSedmici = 7
+    }
+    var brojDana = parseInt(korisnik.brojTreningaNedeljno);
+    var udaljenostDoNedelje = 7 - danUSedmici;
+    datum.setDate(datum.getDate() + udaljenostDoNedelje - 6);
+    var tabela = "<table>";
+    tabela += "<thead><tr><th colspan='6'>Dan i program</th></thead>";
+    var www = 0;
+    for (var i = 7; i > 0; i--) {
+        datum.setDate(datum.getDate() + 1);
+        var prethodniTreninzi = korisnik.odradjeniTreninzi;
+        var d = datum.getDate();
+        var m = datum.getMonth() + 1;
+        var god = datum.getFullYear();
+        var n = d.toString() + "." + m.toString() + "." + god.toString() + ".";
+        tabela += "<tr><th colspan='6'>" + n + "</th></tr>";
+        tabela += "<tr><th colspan='6'>" + daniUNedelji[www] + "</th></tr>";
+         tabela += "<thead><tr><th>Vezba</th><th>Broj serija</th><th>Ponavljanje</th><th>Tezina</th></tr></thead>";
+       var t = 0;
+        var s = 200;
+        var danUProgramu = izborProgramaZaNedelju(www);
+        if (danUProgramu !== "odmor") {
+            var zadnjiTrening = prethodniTreninzi[prethodniTreninzi.length - brojDana + www];
+var zaProslediti=prethodniTreninzi.length - brojDana + www;
+            if (zadnjiTrening !== undefined) {              
+                var duzinaNizaNaDan = zadnjiTrening.length - 2;
+                var brojVezbi = (duzinaNizaNaDan) / 4;
+                var y = 2;
+                for (var z = 0; z < brojVezbi; z++) {
+                    tabela += "<tr>";
+                    for (var w = 0; w < 4; w++) {
+                        tabela += "<td >" + zadnjiTrening[y] + "</td>";
+                        y++;
+                    }
+                    t++;
+                    s++;
+                    tabela += "<td><input type='button' value='&#x25B2;' id=" + t + " onclick=' var y=" + y + ";var privremeno=" + zadnjiTrening[y - 1] + "; var zaProslediti="+zaProslediti+"; povecavanjeTezineUSedmicnojTabeli(privremeno,y,zaProslediti)'></td><td><input type='button' id=" + s + " value='&#x25BC;'  onclick='var y=" + y + "; var privremeno=" + zadnjiTrening[y - 1] + ";var smanjiZa=" + zaProslediti + ";smanjivanjeTezineUSedmicnojTabeli(privremeno,y,smanjiZa)'></td>";
+                    tabela += "</tr>";
+                }
+            }      
         } else {
-            q = vezbe[danUProgramu].length;
-            for (var z = 0; z < q; z++) {
-                var x = Math.floor(Math.random() * vezbe[danUProgramu][z].length);
-                var y = Math.floor(Math.random() * vezbe[danUProgramu][z].length);
-                tabela += "<tr><td>" + vezbe[danUProgramu][z][x] + "</td><td>" + brojSerijaVezbe + "</td><td>" + brojPonavljanjaUSeriji + "</td><td>" + opterecenje + "</td></tr>";
-                tabela += "<tr><td>" + vezbe[danUProgramu][z][y] + "</td><td>" + brojSerijaVezbe + "</td><td>" + brojPonavljanjaUSeriji + "</td><td>" + opterecenje + "</td></tr>";
-            }
+            tabela += "<tr><td>Dan za odmor</td></tr>";
         }
+        www++;
+        udaljenostDoNedelje--;
     }
     tabela += "</table>";
     document.getElementById("tabelaZaSedmicu").innerHTML = tabela;
+}
+function racunanjeProgramaZaSedmicu() {
+    var ime = localStorage.getItem('ulogovaniKorisnik');
+    var korisnik = proveraImena(ime);
+    var odradjeniTreninzi = korisnik.odradjeniTreninzi;
+    var zadnjiTrening = odradjeniTreninzi[odradjeniTreninzi.length - 1];
+    var datum = new Date();
+    var dan = datum.getDate();
+    var mesec = datum.getMonth() + 1;
+    var godina = datum.getFullYear();
+    var sad = dan.toString() + "." + mesec.toString() + "." + godina.toString() + ".";
+    if (zadnjiTrening == undefined) {
+        zadnjiTrening = [];
+    }
+    var danUSedmici = datum.getDay();
+    if (danUSedmici == 0) {
+        danUSedmici = 7;
+    }
+    //iz nekog cudnog razloga mi vraca datum ranije nego sto bi trebalo
+    var udaljenostDoNedelje = 7 - danUSedmici;
+    datum.setDate(datum.getDate() + udaljenostDoNedelje - 6);
+    var j = 7;
+    for (var i = 1; i <= 7; i++) {
+        var d = datum.getDate();
+        var m = datum.getMonth() + 1;
+        var god = datum.getFullYear();
+        var n = d.toString() + "." + m.toString() + "." + god.toString() + ".";
+        for (var l = 0; l < odradjeniTreninzi.length; l++) {
+            if (n == odradjeniTreninzi[l][0]) {
+                var kontrolniDatum = n;
+            }
+        } if (kontrolniDatum == n) {
+            continue;
+        }
+        racunanjePrograma(datum, j, n);
+        j--;
+        datum.setDate(datum.getDate() + 1);
+    }
+}
+
+function izborNasumicnogBroja(x) {
+    var broj = Math.floor(Math.random() * x);
+    return broj
+}
+
+function prikaziStatistiku() {
+    document.getElementById("statistika").style.display = "block";
+    document.body.style.backgroundColor = "#f3f3f3";
+    document.body.style.background = 'url("pozadina8.jpg")';
+    document.body.style.backgroundSize = "cover";
+    document.body.style.backgroundAttachment = "fixed";
+    document.getElementById("program").style.display = "none";
+    document.getElementById("izmeniProfil").style.display = "none";
+    document.getElementById("promenaSifre").style.display = "none";
+    document.getElementById("programZaSedmicu").style.display = "none";
+    document.getElementById("logout").style.display = "none";
+    var ime = koJeUlogovan();;
+    var korisnik = proveraImena(ime);
+    var prethodniTreninzi = korisnik.odradjeniTreninzi;
+    var tabela = "<table>";
+    for (var i = 0; i < prethodniTreninzi.length; i++) {
+        tabela += "<tr>";
+        tabela += "<th colspan='4'>" + prethodniTreninzi[i][0] + "</th></tr>";
+        var n = (prethodniTreninzi[i].length - 1) / 4;
+        var y = 1;
+        for (var z = 1; z <= n; z++) {
+            tabela += "<tr>";
+            for (var w = 0; w <= 3; w++) {
+                tabela += "<td >" + prethodniTreninzi[i][y] + "</td>";;
+                y++;
+            }
+            tabela += "</tr>";
+        }
+    }
+    tabela += "</table>";
+    document.getElementById("podaciOPrethodnimTreninzima").innerHTML = tabela;
+    return tabela;
+}
+function koJeUlogovan() {
+    var ime = localStorage.getItem('ulogovaniKorisnik');
+    return ime;
+}
+function danasnjaTabela(udaljenostDoNedelje) {
+    racunanjeProgramaZaSedmicu();
+    var ime = koJeUlogovan();
+    var korisnik = proveraImena(ime);
+    var brojDana = korisnik.brojTreningaNedeljno;
+    var prethodniTreninzi = korisnik.odradjeniTreninzi;
+    var datum = new Date();
+    var d = datum.getDate();
+    var m = datum.getMonth() + 1;
+    var god = datum.getFullYear();
+    var n = d.toString() + "." + m.toString() + "." + god.toString() + ".";
+    for (var redniBrojTreninga = 0; redniBrojTreninga < prethodniTreninzi.length; redniBrojTreninga++) {
+        console.log(n);
+        if (n == prethodniTreninzi[redniBrojTreninga][0]) {
+
+
+
+            var zadnjiTrening = prethodniTreninzi[redniBrojTreninga];
+            var tabela = "";
+            tabela += "<tr><th colspan='6'>" + zadnjiTrening[0] + "</th></tr>";
+            var n = (zadnjiTrening.length - 2) / 4;
+            var y = 2;
+            var t = 0;
+            var s = 200;
+
+            for (var z = 0; z < n; z++) {
+                tabela += "<tr>";
+                for (var w = 0; w < 4; w++) {
+                    tabela += "<td >" + zadnjiTrening[y] + "</td>";
+
+                    y++;
+                }
+                console.log("y bude",y)
+                t++;
+                s++;
+                tabela += "<td><input type='button' value='&#x25B2;' id=" + t + " onclick=' var y=" + y + "; var redniBrojTreninga="+redniBrojTreninga+"; var privremeno=" + zadnjiTrening[y-1]+ "; povecavanjeTezine(privremeno,y,redniBrojTreninga)'></td><td><input type='button' id=" + s + " value='&#x25BC;'  onclick='var y=" + y + ";  var redniBrojTreninga="+redniBrojTreninga+";var privremeno=" + zadnjiTrening[y - 1] + ";smanjivanjeTezine(privremeno,y,redniBrojTreninga)'></td>";
+                tabela += "</tr>";
+            }
+        }
+    }
+    return tabela;
 }
 
 function promenaPodataka(event) {
     var user = proveraImena(localStorage.getItem('ulogovaniKorisnik'));
     var korisnici = sviKorisnici();
     var tezina = document.getElementById("tezina").value;
+    var modulTreninga = odredjivanjeModulaTreninga();
     var visina = document.getElementById("visina").value;
     var godine = document.getElementById("godine").value;
     var procenatMasti = document.getElementById("procenatMasti").value;
     var pol = odredjivanjePola();
-    var modulTreninga = odredjivanjeModulaTreninga();
     var brojTreningaNedeljno = odabirBrojaTreningaNedeljno();
     for (var index = 0; index < korisnici.length; index++) {
         var korisnik = korisnici[index];
@@ -343,6 +561,8 @@ function promenaPodataka(event) {
         }
     }
     localStorage.setItem('korisnik', JSON.stringify(korisnici));
+    racunanjeProgramaZaSedmicu();
+    location.reload();
 }
 function odredjivanjePola() {
     var polovi = document.getElementsByName("gender");
@@ -396,25 +616,25 @@ function odabirBrojaTreningaNedeljno() {
     return odabraniBroj;
 }
 function racunanjeOptimalnogTreninga() {
-    var trening;
+    var trening = {};
     var ponavljanja;
     var serije;
     var tezina;
     var ime = localStorage.getItem('ulogovaniKorisnik');
     var korisnik = proveraImena(ime);
     var terminus = terminusPovecavanja();
-   
+
     if (korisnik.modulTreninga == 'masa') {
-        trening = { serije: 3, ponavljanja: 6, povecavanjeSerija: 1, povecavanjePonavljanja: 1, terminusPovecavanja: terminus, };
+        trening = { serije: 3, ponavljanja: 6, povecavanjeSerija: 1, povecavanjePonavljanja: 1, povecavanjeOpterecenja: 2.5, terminusPovecavanja: terminus, };
     }
     else if (korisnik.modulTreninga == 'definicija') {
-        trening = { serije: 5, ponavljanja: 9, povecavanjeSerija: 0, povecavanjePonavljanja: 2, terminusPovecavanja: terminus, };
+        trening = { serije: 5, ponavljanja: 9, povecavanjeSerija: 0, povecavanjePonavljanja: 2, povecavanjeOpterecenja: 2.5, terminusPovecavanja: terminus, };
     }
     else if (korisnik.modulTreninga == 'snaga') {
-        trening = { serije: 2, ponavljanja: 3, povecavanjeSerija: 1, povecavanjePonavljanja: 1, terminusPovecavanja: terminus, };
+        trening = { serije: 2, ponavljanja: 3, povecavanjeSerija: 1, povecavanjePonavljanja: 1, povecavanjeOpterecenja: 2.5, terminusPovecavanja: terminus, };
     }
     else if (korisnik.modulTreninga == 'kardio') {
-        trening = { serije: 2, ponavljanja: 1, povecavanjeSerija: 1, povecavanjePonavljanja: 1, terminusPovecavanja: terminus, };
+        trening = { serije: 2, ponavljanja: 1, povecavanjeSerija: 1, povecavanjePonavljanja: 1, povecavanjeOpterecenja: 2.5, terminusPovecavanja: terminus, };
     }
     //postaviti maksimalan broj serija na 6 i maksimalan broj ponavljanja na 15.
     return trening;
@@ -465,11 +685,37 @@ function brojPonavljanja() {
     }
     return ponavljanja;
 }
-function racunanjeOpterecenja() {
+function racunanjeOpterecenja(x) {
     var intezitet;
     var ime = localStorage.getItem('ulogovaniKorisnik');
     var korisnik = proveraImena(ime);
+    var odradjeniTreninzi = korisnik.odradjeniTreninzi;
+    var daLiPovecati = daLiJeVremeZaPovecavanje();
+    var povecanje = 0;
+    if (daLiPovecati == true) {
+        povecanje = 2.5;
+    }
     intezitet = Math.round(korisnik.tezina / 2);
+    if (korisnik.pol == "female") {
+        intezitet *= 0.7;
+    }
+    var korisnici = sviKorisnici();
+    for (var index = odradjeniTreninzi.length - 1; index > 0; index--) {
+        for (var z = odradjeniTreninzi[index].length; z > 0; z--) {
+            if (odradjeniTreninzi[index][z] == x) {
+
+                intezitet = odradjeniTreninzi[index][z + 3];
+
+                if (intezitet < 150) {
+                    intezitet += povecanje;
+                }
+
+
+                return intezitet;
+            }
+        }
+    }
+
     return intezitet;
 }
 
@@ -485,14 +731,18 @@ function vezbeZaTrening() {
     var vezbeZaRamena = ["letenje", "potisak iz sedeceg polozaja na gore", "dizanje tega iz sedeceg polozaja na gore", "dizanje jednorucnih tegova ispred sebe", "povlacenje na lat masini iza glave"];
     var vezbeZaNoge1 = ["cucanj", "potisak napred", "potisak nogama"];
     var vezbeZaNoge2 = ["iskorak", "potisak nazad", "listovi"];
-    var vezbe = [vezbeZaGrudi, vezbeZaBiceps, vezbeZaTriceps, vezbeZaLedja, vezbeZaRamena, vezbeZaNoge1, vezbeZaNoge2];
+    var kardio = ["trcanje", "nordijsko skijanje", "voznja bicikle"];
+    var vezbe = [vezbeZaGrudi, vezbeZaBiceps, vezbeZaTriceps, vezbeZaLedja, vezbeZaRamena, vezbeZaNoge1, vezbeZaNoge2, kardio];
 
     return vezbe;
 }
 function vremeNaPocetkuNedelje() {
     var d = new Date();
     var vreme = d.getTime();
-    var dan = danasnjiDan();
+    var dan = d.getDay();
+    if (dan == 0) {
+        dan = 7;
+    }
     if (dan !== 1) {
         var novoVreme = vreme - (dan * 86400000);
     } else {
@@ -508,7 +758,7 @@ function resetovanje() {
     var korisnici = sviKorisnici();
     for (var index = 0; index < korisnici.length; index++) {
         var korisnik = korisnici[index];
-        if (ime.user == korisnik.user) {
+        if (korisnik.user == ime.user) {
             korisnici[index].vreme = trenutno;
         }
     }
@@ -524,7 +774,7 @@ function daLiJeVremeZaPovecavanje() {
     var korisnik = proveraImena(ime);
     var pocetnoVreme = korisnik.vreme;
     var protekloVreme = vreme - pocetnoVreme;
-    if (terminusKorisnika > protekloVreme) {
+    if (terminusKorisnika < protekloVreme) {
         povecati = true;
         resetovanje();
     }
@@ -569,6 +819,7 @@ function podelaMisicaNaGrupe() {
     var korisnik = proveraImena(ime);
     var vezbe = vezbeZaTrening();
     var brojDana = korisnik.brojTreningaNedeljno;
+
     if (brojDana == 1) {
         var vezbeZaDan = [
             vezbe[0], vezbe[1], vezbe[2], vezbe[3], vezbe[4], vezbe[5], vezbe[6]
@@ -590,7 +841,7 @@ function podelaMisicaNaGrupe() {
         var vezbeZaDan = [[vezbe[0], vezbe[1]], [vezbe[2], vezbe[3]], [vezbe[4], vezbe[5], vezbe[6]]];
     }
     else if (brojDana == 7) {
-        var vezbeZaDan = [[vezbe[0], vezbe[1]], [vezbe[2], vezbe[3]], [vezbe[4], vezbe[5], vezbe[6]]];
+        var vezbeZaDan = [[vezbe[0], vezbe[1]], [vezbe[2], vezbe[3]], [vezbe[4], vezbe[5], vezbe[6]], [vezbe[7]]];
     }
     return vezbeZaDan;
 }
@@ -623,57 +874,72 @@ function daniKojimaSeVezba() {
     return daniKojimaSeVezba;
 }
 
-function danasnjiDan() {
-    var d = new Date();
+function danasnjiDan(datum) {
+    var d = new Date(datum);
     var dan = d.getDay();
     return dan;
 }
-function daLiDanasVezbam() {
-    var dan = danasnjiDan();
-
+function daLiDanasVezbam(datum) {
+    var dan = danasnjiDan(datum);
+    if (dan == 0) {
+        dan = 7;
+    }
     var daniZaVezbu = daniKojimaSeVezba();
     var odgovor;
     for (i = 0; i < daniZaVezbu.length; i++) {
         if (dan == daniZaVezbu[i]) {
+            console.log("datum", daniZaVezbu[i]);
             return odgovor = "yes";
         }
     }
     return odgovor = "no";
 }
-function programZaDan() {
+function programZaDan(datum) {
     var ime = localStorage.getItem('ulogovaniKorisnik');
     var korisnik = proveraImena(ime);
-    var brojDana = korisnik.brojTreningaNedeljno;
-    var danDanas = danasnjiDan() - 1;
+    var brojDana = parseInt(korisnik.brojTreningaNedeljno);
+    var dan = danasnjiDan(datum);
+
+    if (dan == 0) {
+        dan = 7
+    }
+
+    var danDanas = dan - 1;
+
     if (brojDana == 1) {
-        var opcije = ['', '', '', '', '', 1, ''];
+        var opcije = ['x', 'x', 'x', 'x', 'x', 1, 'x'];
     }
     else if (brojDana == 2) {
-        var opcije = ['', '', 0, '', '', 1, '', ''];
+        var opcije = ['x', 'x', 0, 'x', 'x', 1, 'x', 'x'];
     }
     else if (brojDana == 3) {
-        var opcije = ['', 0, '', 1, '', 2, '', ''];
+        var opcije = ['x', 0, 'x', 1, 'x', 2, 'x', 'x'];
     }
     else if (brojDana == 4) {
-        var opcije = [0, 1, '', '', 0, 1, ''];
+        var opcije = [0, 1, 'x', 'x', 0, 1, 'x'];
     }
     else if (brojDana == 5) {
-        var opcije = [0, 1, '', 2, 0, 1, '', ''];
+        var opcije = [0, 1, 'x', 2, 0, 1, 'x', 'x'];
     }
     else if (brojDana == 6) {
-        var opcije = [0, 1, 2, 0, 1, 2, ''];
+        var opcije = [0, 1, 2, 0, 1, 2, 'x'];
     }
     else if (brojDana == 7) {
-        var opcije = [0, 1, 2, 0, 1, 2, 0];
+
+        var opcije = [0, 1, 2, 0, 1, 2, 3];
     }
     var programKojiPrimenjujemo = opcije[danDanas];
+
+
     return programKojiPrimenjujemo;
+
 }
 function izborProgramaZaNedelju(x) {
     var ime = localStorage.getItem('ulogovaniKorisnik');
     var korisnik = proveraImena(ime);
     var brojDana = korisnik.brojTreningaNedeljno;
-    var danDanas = x;
+
+    console.log("dandanas", x)
     if (brojDana == 1) {
         var opcije = ['odmor', 'odmor', 'odmor', 'odmor', 'odmor', 1, 'odmor'];
     }
@@ -695,12 +961,81 @@ function izborProgramaZaNedelju(x) {
     else if (brojDana == 7) {
         var opcije = [0, 1, 2, 0, 1, 2, 0];
     }
-    var programKojiPrimenjujemo = opcije[danDanas];
+    var programKojiPrimenjujemo = opcije[x];
+    console.log("programkojiprimenj", programKojiPrimenjujemo)
     return programKojiPrimenjujemo;
 }
-function povecavanjeOpterecenja() {
+function povecavanjeTezine(tezina, y,redniBrojTreninga) {
+    var ime = localStorage.getItem('ulogovaniKorisnik');
+    var korisnik = proveraImena(ime);
+    var prethodniTreninzi = korisnik.odradjeniTreninzi;
+    tezina += 2.5;
 
-}//postepeno povecavanje opterecenja, broja ponavljanja, broja serija, tezine itd
+    var korisnici = sviKorisnici();
+    for (var index = 0; index < korisnici.length; index++) {
+        var user = korisnici[index];
+        if (korisnik.user == user.user) {
+            korisnici[index].odradjeniTreninzi[redniBrojTreninga][y - 1] = tezina;
+        }
+    }
+    localStorage.setItem('korisnik', JSON.stringify(korisnici));
+    prikazPrograma();
+
+}
+function smanjivanjeTezine(tezina, y,redniBrojTreninga) {
+    var ime = localStorage.getItem('ulogovaniKorisnik');
+    var korisnik = proveraImena(ime);
+    var prethodniTreninzi = korisnik.odradjeniTreninzi;
+    tezina -= 2.5;
+
+    var korisnici = sviKorisnici();
+    for (var index = 0; index < korisnici.length; index++) {
+        var user = korisnici[index];
+        if (korisnik.user == user.user) {
+            korisnici[index].odradjeniTreninzi[redniBrojTreninga][y - 1] = tezina;
+        }
+    }
+    localStorage.setItem('korisnik', JSON.stringify(korisnici));
+    prikazPrograma();
+}
+function povecavanjeTezineUSedmicnojTabeli(tezina, y,n) {
+    var ime = localStorage.getItem('ulogovaniKorisnik');
+    var korisnik = proveraImena(ime);
+    var prethodniTreninzi = korisnik.odradjeniTreninzi;
+    var zadnjiTrening = prethodniTreninzi[smanjiZa];
+    var smanjiZa;
+
+
+    tezina += 2.5;
+    console.log("smanjiza", smanjiZa)
+    var korisnici = sviKorisnici();
+    for (var index = 0; index < korisnici.length; index++) {
+        var user = korisnici[index];
+        if (korisnik.user == user.user) {
+            korisnici[index].odradjeniTreninzi[n][y - 1] = tezina;
+        }
+    }
+    localStorage.setItem('korisnik', JSON.stringify(korisnici));
+    prikazProgramaZaSedmicu();
+}
+function smanjivanjeTezineUSedmicnojTabeli(tezina, y, smanjiZa) {
+    var ime = localStorage.getItem('ulogovaniKorisnik');
+    var korisnik = proveraImena(ime);
+    var prethodniTreninzi = korisnik.odradjeniTreninzi;
+    var zadnjiTrening = prethodniTreninzi[smanjiZa];
+    tezina -= 2.5;
+    ;
+    var korisnici = sviKorisnici();
+    for (var index = 0; index < korisnici.length; index++) {
+        var user = korisnici[index];
+        if (korisnik.user == user.user) {
+            korisnici[index].odradjeniTreninzi[smanjiZa][y - 1] = tezina;
+        }
+    }
+    localStorage.setItem('korisnik', JSON.stringify(korisnici));
+    prikazProgramaZaSedmicu();
+}
+//postepeno povecavanje opterecenja, broja ponavljanja, broja serija, tezine itd
 
 //postaviti linkove ka korisnim sajtovima
 //postaviti linkove sa informacijama o povredama
