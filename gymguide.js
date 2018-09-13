@@ -34,15 +34,8 @@ function prikaziMojProfil() {
     document.body.style.backgroundAttachment = "fixed";
     document.getElementById("mojProfil").style.display = 'block';
     document.getElementById("home").style.display = 'block';
-    document.getElementById("izmeniProfil").style.display = "none";
-    document.getElementById("login").style.display = 'none';
-    document.getElementById("programZaSedmicu").style.display = 'none';
-    document.getElementById("program").style.display = 'none';
-    document.getElementById("promenaSifre").style.display = "none";
-    document.getElementById("register").style.display = "none";
-    document.getElementById("statistika").style.display = "none";
-    document.getElementById("logout").style.display = "none";
-    document.getElementById("daLiSiSiguran").style.display = "none";
+    hideDivs([ "izmeniProfil", "login", "program", "statistika", "programZaSedmicu","daLiSiSiguran", "register", "promenaSifre", "logout" ]);
+
     var ime = localStorage.getItem('ulogovaniKorisnik');
     var korisnik = proveraImena(ime);
     var tezineKorisnika = preporuceniModulTreninga();
@@ -131,17 +124,12 @@ function urediMojProfil(event) {
 
     document.getElementById("izmeniProfil").style.display = "block";
     //document.getElementById("sadrzajPromenePodataka").style.display = "block";
-    document.getElementById("program").style.display = "none";
-    document.getElementById("statistika").style.display = "none";
-    document.getElementById("ispisOsnovnihPodataka").style.display = "none";
-    document.getElementById("home").style.display = "none";
-    document.getElementById("logout").style.display = "none";
     document.body.style.backgroundImage = "url('pozadina-2.jpg')";
-
     document.body.style.backgroundColor = "#f3f3f3";
     document.body.style.backgroundSize = "cover";
     document.body.style.backgroundAttachment = "fixed";
-    //document.getElementById("promenaSifre").style.display = "none";*/
+    //document.getElementById("promenaSifre").style.display = "none";*/  
+    hideDivs([ "home", "program", "statistika", "programZaSedmicu","ispisOsnovnihPodataka", "register", "promenaSifre","logout" ]);
 }
 function proveriKorisnika(event) {
     //  event.preventDefault();
@@ -169,13 +157,7 @@ function stranicaZaLogout() {
     document.body.style.background = 'url("pozadina-3.jpg")';
     document.getElementById("logoutPage").style.backgroundSize = "cover";
     document.getElementById("logoutPage").style.backgroundAttachment = "fixed";
-    document.getElementById("home").style.display = "none";
-    document.getElementById("izmeniProfil").style.display = "none";
-    document.getElementById("statistika").style.display = "none";
-    document.getElementById("programZaSedmicu").style.display = "none";
-    document.getElementById("promenaSifre").style.display = "none";
-    document.getElementById("program").style.display = "none";
-    // izlogujGa();
+    hideDivs(["home", "izmeniProfil", "statistika", "programZaSedmicu", "register", "promenaSifre", "program"]);
 }
 function izlogujGa() {
     localStorage.removeItem('ulogovaniKorisnik');
@@ -220,7 +202,11 @@ function promeniSifru(event) {
 
 }
 
-
+function hideDivs(divs){
+    for(var i=0;i<divs.length;i++){
+        document.getElementById(divs[i]).style.display='none';
+    }
+}
 
 
 
@@ -246,11 +232,8 @@ function prikazPrograma(event) {
     document.body.style.backgroundColor = "#f3f3f3";
     document.body.style.backgroundSize = "cover";
     document.body.style.backgroundAttachment = "fixed";
-    document.getElementById("izmeniProfil").style.display = "none";
-    document.getElementById("programZaSedmicu").style.display = "none";
-    document.getElementById("promenaSifre").style.display = "none";
-    document.getElementById("statistika").style.display = "none";
-    document.getElementById("logout").style.display = "none";
+    hideDivs([ "izmeniProfil", "login",  "statistika", "programZaSedmicu","daLiSiSiguran", "register", "promenaSifre","logout" ]);
+
     var datum = new Date();
 
     var danUSedmici = datum.getDay();
@@ -353,11 +336,8 @@ function prikazProgramaZaSedmicu(event) {
     document.body.style.background = 'url("pozadina.jpg")';
     document.body.style.backgroundSize = "cover";
     document.body.style.backgroundAttachment = "fixed";
-    document.getElementById("program").style.display = "none";
-    document.getElementById("izmeniProfil").style.display = "none";
-    document.getElementById("promenaSifre").style.display = "none";
-    document.getElementById("statistika").style.display = "none";
-    document.getElementById("logout").style.display = "none";
+    hideDivs([ "izmeniProfil", "login", "program", "statistika", "daLiSiSiguran", "register", "promenaSifre","logout" ]);
+
     racunanjeProgramaZaSedmicu();
     var daniUNedelji = ["ponedeljak", "utorak", "sreda", "cetvrtak", "petak", "subota", "nedelja"];
     var ime = koJeUlogovan();
@@ -464,11 +444,7 @@ function prikaziStatistiku() {
     document.body.style.background = 'url("pozadina8.jpg")';
     document.body.style.backgroundSize = "cover";
     document.body.style.backgroundAttachment = "fixed";
-    document.getElementById("program").style.display = "none";
-    document.getElementById("izmeniProfil").style.display = "none";
-    document.getElementById("promenaSifre").style.display = "none";
-    document.getElementById("programZaSedmicu").style.display = "none";
-    document.getElementById("logout").style.display = "none";
+    hideDivs(["home", "izmeniProfil", "logout", "programZaSedmicu", "register", "promenaSifre", "program"]);
     var ime = koJeUlogovan();;
     var korisnik = proveraImena(ime);
     var prethodniTreninzi = korisnik.odradjeniTreninzi;
@@ -476,8 +452,8 @@ function prikaziStatistiku() {
     for (var i = 0; i < prethodniTreninzi.length; i++) {
         tabela += "<tr>";
         tabela += "<th colspan='4'>" + prethodniTreninzi[i][0] + "</th></tr>";
-        var n = (prethodniTreninzi[i].length - 1) / 4;
-        var y = 1;
+        var n = (prethodniTreninzi[i].length - 2) / 4;
+        var y = 2;
         for (var z = 1; z <= n; z++) {
             tabela += "<tr>";
             for (var w = 0; w <= 3; w++) {

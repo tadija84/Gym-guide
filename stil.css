@@ -37,6 +37,7 @@ body{
 #izmeniProfil,
 #program,
 #programZaSedmicu,
+#daLiSiSiguran,
 #logoutPage {
     display: none;
 }
@@ -50,6 +51,12 @@ body{
 #program, #prikazProgramaZaSedmicu, #izmeniProfil{
     min-height: 800px; 
     z-index: +1;
+}
+#izmeniProfil{
+    position: relative;
+    width: 50%;
+    left: 25%;
+    border: solid red 3px;
 }
 
 table, thead, td{
@@ -74,6 +81,11 @@ thead,td, th {
     top: 200px;
     width: 50%;
    left: 10%
+}
+#statistika{
+    position: relative;
+    top: 200px;
+    left: 25%;
 }
 nav{clear: both;
     position: relative;
