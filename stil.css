@@ -9,7 +9,7 @@ body{
     background-size: cover;                     
     background-repeat: no-repeat;
     background-attachment: fixed;
-    min-height: 800px;
+    
     background-position: center top;
       
 }
@@ -48,15 +48,18 @@ body{
     width: 100%;
     z-index: +1;
 }
-#program, #prikazProgramaZaSedmicu, #izmeniProfil{
+/*#program,
+ #prikazProgramaZaSedmicu, #izmeniProfil{
     min-height: 800px; 
     z-index: +1;
-}
+}*/
 #izmeniProfil{
     position: relative;
     width: 50%;
     left: 25%;
-    border: solid red 3px;
+    
+    margin-top: 8%;
+    align-content: center;
 }
 
 table, thead, td{
@@ -68,13 +71,32 @@ table, thead, td{
  outline-width: 3px;
  
 }
+table{
+    width:100%;
+}
 thead,td, th {
  outline: solid #b5ea00 1px;
 }
-#tabelaNaDan{position: relative;
-    left: 25%;
+td{
+    padding: 2px,5px;
+    text-align: center;
+}
+tr :first-child{
+    text-align: left;
+    width:60%;
+}
+.strelice{
+    width: 100%;
+    background-color: black;
+    color: white;
+}
+#tabelaNaDan{
+    position: fixed;
+    border:solid red 3px;
+ align-content: center;
     top: 200px;
     width: 50%;
+   left: 25%
 }
 #tabelaZaSedmicu{
     position: relative;

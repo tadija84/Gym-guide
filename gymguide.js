@@ -232,7 +232,7 @@ function prikazPrograma(event) {
     document.body.style.backgroundColor = "#f3f3f3";
     document.body.style.backgroundSize = "cover";
     document.body.style.backgroundAttachment = "fixed";
-    hideDivs([ "izmeniProfil", "login",  "statistika", "programZaSedmicu","daLiSiSiguran", "register", "promenaSifre","logout" ]);
+    hideDivs([ "home","izmeniProfil", "login",  "statistika", "programZaSedmicu","daLiSiSiguran", "register", "promenaSifre","logout" ]);
 
     var datum = new Date();
 
@@ -506,7 +506,7 @@ function danasnjaTabela(udaljenostDoNedelje) {
                 console.log("y bude",y)
                 t++;
                 s++;
-                tabela += "<td><input type='button' value='&#x25B2;' id=" + t + " onclick=' var y=" + y + "; var redniBrojTreninga="+redniBrojTreninga+"; var privremeno=" + zadnjiTrening[y-1]+ "; povecavanjeTezine(privremeno,y,redniBrojTreninga)'></td><td><input type='button' id=" + s + " value='&#x25BC;'  onclick='var y=" + y + ";  var redniBrojTreninga="+redniBrojTreninga+";var privremeno=" + zadnjiTrening[y - 1] + ";smanjivanjeTezine(privremeno,y,redniBrojTreninga)'></td>";
+                tabela += "<td><input type='button' class='strelice' value='&#x25B2;' id=" + t + " onclick=' var y=" + y + "; var redniBrojTreninga="+redniBrojTreninga+"; var privremeno=" + zadnjiTrening[y-1]+ "; povecavanjeTezine(privremeno,y,redniBrojTreninga)'></td><td><input type='button' id=" + s + " value='&#x25BC;' class='strelice'  onclick='var y=" + y + ";  var redniBrojTreninga="+redniBrojTreninga+";var privremeno=" + zadnjiTrening[y - 1] + ";smanjivanjeTezine(privremeno,y,redniBrojTreninga)'></td>";
                 tabela += "</tr>";
             }
         }
